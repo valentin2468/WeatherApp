@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: API Documentation
+  description: API documentation to retrieve weather data.
+  version: 1.0.0
+
+paths:
+  /api/weather:
+    get:
+      summary: Get weather
+      description: Returns weather data based on latitude and longitude.
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Latitude of the location
+        - name: lng
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Longitude of the location
+      responses:
+        "200":
+          description: Successfully retrieved weather data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: number
+                    description: Current temperature
+                  conditions:
+                    type: string
+                    description: Weather conditions
+        "400":
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Provide valid lat and lng params"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred"
