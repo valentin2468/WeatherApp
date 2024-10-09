@@ -21,13 +21,11 @@ app.all("/api/weather", (req: Request, res: Response) => {
 app.use((req: Request, res: Response) => {
   res.status(404).json({ error: "Path Not Found" });
 });
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server being executed at http://localhost:${port}`);
+  });
+}
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong" });
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${port}`);
-});
+export default app;
