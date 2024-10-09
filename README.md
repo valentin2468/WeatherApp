@@ -11,3 +11,4 @@ For testing:
 1. npm run test:unit        - for unit tests
 2. npm run test:integration - for integration test
 
+You can find the documentation about the api in the openapi.yaml file. Anyways the call it's like you have defined it in your README.
